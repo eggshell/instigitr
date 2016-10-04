@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+PROJECT_NAME=$(basename "$PWD")
+
+while true; do
+    read -p "Do you wish to make the current dir a git project?" yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+git init
+touch .gitignore
+
+echo "# ${PROJECT_NAME} [![GNU GPL](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)" \
+     > README.md
+
+cat >> README.md << 'EOF'
+
+TODO: Write a project description
+
+## Installation
+
+TODO: Describe the installation process
+
+## Usage
+
+TODO: Write usage instructions
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
+
+## History
+
+TODO: Write history
+
+## Credits
+
+TODO: Write credits
+EOF

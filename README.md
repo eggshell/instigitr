@@ -1,8 +1,9 @@
 # instigitr [![GNU GPL](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 
-instigitr is a single file command line utility for creating git repos and
-initializing their README. It also creates a `.gitignore`, and I plan to add
-support for many languages and other doo-dads.
+instigitr is a python tool for creating git repos and initializing their
+README. It also creates a `.gitignore`, which is pulled from a sanitized
+list of gitignores provided by GitHub. If the gitignore type is not present
+in that list, an empty `.gitignore` is created instead.
 
 ## Installation
 
@@ -12,7 +13,7 @@ support for many languages and other doo-dads.
 
 1. create a directory for your new repo: `mkdir my-new-repo`
 1. cd into the new directory: `cd my-new-repo`
-1. `$ instigitr` and type Y
+1. `$ instigitr type` , where `type` is your repo's main language (ex: `C`)
 
 ## Contributing
 
@@ -24,5 +25,14 @@ support for many languages and other doo-dads.
 
 ## History
 
-You are staring at the beginning of the repo. It is very immature at the
-moment.
+* 2016-10-03: initial commit of basic functionality in bash
+* 2016-10-04: conversion of basic functionality to Python
+
+## TODO
+
+* Add support for other Licenses (currently only GPL is supported)
+* Provide user with choice of repo type rather than relying on them to get
+  it right.
+* Add support for different types of READMEs (small, med, large, etc)
+* Based on the repo type, instantiate the necessary dir structure (this will
+  take a while).

@@ -4,4 +4,4 @@ if [[ ! -d ${HOME}/bin ]]; then
     mkdir ${HOME}/bin
 fi
 
-cp instigitr ${HOME}/bin/
+ln -s ${PWD}/instigitr/instigitr.py ${HOME}/bin/instigitr

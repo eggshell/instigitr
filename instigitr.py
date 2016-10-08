@@ -2,17 +2,18 @@
 # Written by Cullen Taylor
 # 2016-10-04
 
-import jinja2
 import os
 import requests
 import subprocess
 import sys
 
+from jinja2 import Environment, FileSystemLoader
+
 
 def get_script_path():
     """Returns path where instigitr actually lives
     """
-    return os.path.dirname(os.path.realpath(sys.argv[0]))
+    return os.path.dirname(os.path.split(os.path.realpath(sys.argv[0]))[0])
 
 
 def get_current_dir():
@@ -24,14 +25,14 @@ def get_current_dir():
 def generate_readme(template_file):
     """Generate readme from template using jinja2
     """
-    template_loader = jinja2.FileSystemLoader(searchpath=(get_script_path() +
-                                                          '/templates'))
-    template_env = jinja2.Environment(loader=template_loader)
+    print get_script_path()
+    template_loader = FileSystemLoader(searchpath=(get_script_path() +
+                                                   '/templates'))
+    template_env = Environment(loader=template_loader)
     template = template_env.get_template(template_file)
     template_vars = {"title": get_current_dir()}
     output = template.render(template_vars)
     return output
-
 
 def write_readme():
     """Writes readme that is generated from template
@@ -113,7 +114,7 @@ def get_choice(current_dir):
             sys.stdout.write("Please respond with 'yes' or 'no': ")
 
 
-def instigitr(argv):
+def instigitr(repo_type):
     """Executes main functionality of the script. Handles getting a Y/N choice
     from the user, handling it accordingly, initializing the git repo, popu-
     lating the .gitignore, and writing the README.
@@ -126,12 +127,12 @@ def instigitr(argv):
     handle_choice(choice)
 
     git_init()
-    if len(argv) == 1:
+    if repo_type is None:
         gitignore(None)
     else:
-        gitignore(argv[1])
+        gitignore(repo_type)
 
     write_readme()
 
-if __name__ == "__main__":
-    instigitr(sys.argv)
+def main():
+    instigitr(sys.argv[1])

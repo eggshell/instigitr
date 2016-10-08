@@ -7,7 +7,7 @@ in that list, an empty `.gitignore` is created instead.
 
 ## Installation
 
-* run `install.sh` to install to your home directory's `bin` dir.
+* Run `pip install .` from the repo's root directory.
 
 ## Usage
 

@@ -7,6 +7,7 @@ in that list, an empty `.gitignore` is created instead.
 
 ## Installation
 
+* `git clone` this repository to your local machine.
 * Run `pip install .` from the repo's root directory.
 
 ## Usage
@@ -27,6 +28,7 @@ in that list, an empty `.gitignore` is created instead.
 
 * 2016-10-03: initial commit of basic functionality in bash
 * 2016-10-04: conversion of basic functionality to Python
+* 2016-10-06: added ability to install via pip
 
 ## TODO
 

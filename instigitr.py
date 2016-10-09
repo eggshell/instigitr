@@ -11,7 +11,8 @@ from jinja2 import Environment, FileSystemLoader
 
 
 def get_script_path():
-    """Returns path where instigitr actually lives
+    """Returns path where instigitr actually lives. ex:
+       ${HOME}/username/.virtualenvs/instigitr/libs/python-2.7/site-packages
     """
     return os.path.dirname(os.path.split(os.path.realpath(sys.argv[0]))[0])
 

@@ -17,7 +17,7 @@ in that list, an empty `.gitignore` is created instead.
 
 1. create a directory for your new repo: `mkdir my-new-repo`
 1. cd into the new directory: `cd my-new-repo`
-1. `$ instigitr type` , where `type` is your repo's main language (ex: `C`)
+1. `$ instigitr`, and follow the on-screen prompts
 
 ## Contributing
 
@@ -32,12 +32,11 @@ in that list, an empty `.gitignore` is created instead.
 * 2016-10-03: initial commit of basic functionality in bash
 * 2016-10-04: conversion of basic functionality to Python
 * 2016-10-06: added ability to install via pip
+* 2016-10-15: give users a menu for their choices, eliminating CL args
 
 ## TODO
 
 * Add support for other Licenses (currently only GPL is supported)
-* Provide user with choice of repo type rather than relying on them to get
-  it right.
 * Add support for different types of READMEs (small, med, large, etc)
 * Based on the repo type, instantiate the necessary dir structure (this will
   take a while).

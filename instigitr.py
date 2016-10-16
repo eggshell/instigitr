@@ -8,6 +8,7 @@ import subprocess
 import sys
 
 from jinja2 import Environment, FileSystemLoader
+from pick import pick
 
 
 def get_script_path():
@@ -26,7 +27,6 @@ def get_current_dir():
 def generate_readme(template_file):
     """Generate readme from template using jinja2
     """
-    print get_script_path()
     template_loader = FileSystemLoader(searchpath=(get_script_path() +
                                                    '/templates'))
     template_env = Environment(loader=template_loader)
@@ -51,6 +51,18 @@ def touch(fname, times=None):
         os.utime(fname, times)
 
 
+def fetch_all_gitignores():
+    subprocess.call(["git", "clone", "git@github.com:github/gitignore",
+                     "--depth", "1", "--quiet", "/tmp/gitignore"])
+    all_gitignores = [file for file in os.listdir('/tmp/gitignore')
+                      if file.endswith(".gitignore")]
+    trimmed = [gitignore.replace('.gitignore', '')
+               for gitignore in all_gitignores]
+    # Give user the option to not select a repo type
+    trimmed.append('None')
+    return trimmed
+
+
 def get_gitignore(repo_type):
     """Retrieve sane .gitignore from github/gitignore based on user's input
     supplied from the command line.
@@ -70,7 +82,7 @@ def get_gitignore(repo_type):
 def gitignore(repo_type):
     """Initialize empty .gitignore if no language/type is supplied
     """
-    if repo_type is None:
+    if repo_type == 'None':
         touch('.gitignore')
         return
     else:
@@ -80,62 +92,60 @@ def gitignore(repo_type):
 def git_init():
     """Run git init on the current directory.
     """
-    subprocess.call(["git", "init"])
+    subprocess.call(["git", "init", "--quiet"])
 
 
 def handle_choice(choice):
     """Handle user's choice according to their response.
     """
-    if choice is True:
+    if choice == 'Yes':
         return
     else:
         sys.exit('Aborted')
 
 
-def get_choice(current_dir):
-    """Function to get Y/N decision from user. If the answer is affirmative,
-    the current dir will be initialized. If the answer is negative, instigitr
-    will exit.
+def get_choice(choices, title):
+    """Function to get a choice from the user. Used to confirm that the user
+    wants to make the current directory a git repo, and to get their choice
+    of repo type.
 
     *Arguments:*
-    - current_dir
-        - name of current directory, where user executed instigitr. obtained
-          by get_current_dir()
+    - choices
+        - list of choices to present to user
+    - title
+        - the prompt to present to the user
     """
-    yes = set(['yes', 'ye', 'y', ''])
-    no = set(['no', 'n'])
-
-    print("Do you want to make %s a git repo? [Y/N]" % current_dir)
-    while True:
-        choice = raw_input().lower()
-        if choice in yes:
-            return True
-        elif choice in no:
-            return False
-        else:
-            sys.stdout.write("Please respond with 'yes' or 'no': ")
+    choice, index = pick(choices, title)
+    return choice
 
 
-def instigitr(repo_type):
+def cleanup():
+    """Remove /tmp/gitignore since we don't need it anymore
+    """
+    subprocess.call(["rm", "-rf", "/tmp/gitignore"])
+
+
+def instigitr():
     """Executes main functionality of the script. Handles getting a Y/N choice
     from the user, handling it accordingly, initializing the git repo, popu-
     lating the .gitignore, and writing the README.
-
-    *Arguments:*
-    - argv
-        - list of command line arguments passed to instigitr.
     """
-    choice = get_choice(get_current_dir())
+    choice = get_choice(['Yes', 'No'], 'Do you want to make' +
+                        str(get_current_dir()) + ' a git repo?')
     handle_choice(choice)
 
     git_init()
+    all_gitignores = sorted(fetch_all_gitignores())
+    repo_type = get_choice(all_gitignores, 'What type of repo are you making?')
+
     if repo_type is None:
         gitignore(None)
     else:
         gitignore(repo_type)
 
     write_readme()
+    cleanup()
 
 
 def main():
-    instigitr(sys.argv[1])
+    instigitr()

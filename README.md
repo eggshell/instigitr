@@ -1,4 +1,7 @@
-# instigitr [![GNU GPL](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
+# instigitr
+
+[![Build Status](https://travis-ci.org/egg-shell/instigitr.svg?branch=master)](https://travis-ci.org/egg-shell/instigitr)
+[![GNU GPL](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 
 instigitr is a python tool for creating git repos and initializing their
 README. It also creates a `.gitignore`, which is pulled from a sanitized

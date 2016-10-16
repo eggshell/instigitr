@@ -35,6 +35,7 @@ def generate_readme(template_file):
     output = template.render(template_vars)
     return output
 
+
 def write_readme():
     """Writes readme that is generated from template
     """
@@ -134,6 +135,7 @@ def instigitr(repo_type):
         gitignore(repo_type)
 
     write_readme()
+
 
 def main():
     instigitr(sys.argv[1])

@@ -138,10 +138,7 @@ def instigitr():
     all_gitignores = sorted(fetch_all_gitignores())
     repo_type = get_choice(all_gitignores, 'What type of repo are you making?')
 
-    if repo_type is None:
-        gitignore(None)
-    else:
-        gitignore(repo_type)
+    gitignore(repo_type)
 
     write_readme()
     cleanup()

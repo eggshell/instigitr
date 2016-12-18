@@ -63,13 +63,13 @@ def fetch_all_gitignores():
     return trimmed
 
 
-def get_gitignore(repo_type):
+def get_gitignore(gitignore_type):
     """Retrieve sane .gitignore from github/gitignore based on user's input
     supplied from the command line.
     """
     ignores_link = 'https://raw.githubusercontent.com/github/gitignore/master/'
     with open('.gitignore', 'wb') as curl:
-        response = requests.get(ignores_link + repo_type +
+        response = requests.get(ignores_link + gitignore_type +
                                 '.gitignore', stream=True)
         if not response.ok:
             touch('.gitignore')
@@ -79,14 +79,15 @@ def get_gitignore(repo_type):
             curl.write(block)
 
 
-def gitignore(repo_type):
+def gitignore(gitignore_types):
     """Initialize empty .gitignore if no language/type is supplied
     """
-    if repo_type == 'None':
-        touch('.gitignore')
-        return
-    else:
-        get_gitignore(repo_type)
+    for gitignore_type in gitignore_types:
+        if gitignore_type == 'None':
+            touch('.gitignore')
+            return
+        else:
+            get_gitignore(gitignore_type)
 
 
 def git_init():
@@ -136,9 +137,17 @@ def instigitr():
 
     git_init()
     all_gitignores = sorted(fetch_all_gitignores())
-    repo_type = get_choice(all_gitignores, 'What type of repo are you making?')
+    keep_going = True
+    gitignore_types = []
+    while keep_going:
+        gitignore_types.append(get_choice(all_gitignores,
+                               'What type of repo are you making?'))
+        another_choice = get_choice(['Yes', 'No'], 'Do you have more gitignore
+                                    types?')
+        if not another_choice:
+            keep_going = False
 
-    gitignore(repo_type)
+    gitignore(gitignore_types)
 
     write_readme()
     cleanup()

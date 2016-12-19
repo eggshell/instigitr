@@ -68,7 +68,7 @@ def get_gitignore(gitignore_type):
     supplied from the command line.
     """
     ignores_link = 'https://raw.githubusercontent.com/github/gitignore/master/'
-    with open('.gitignore', 'wb') as curl:
+    with open('.gitignore', 'a') as curl:
         response = requests.get(ignores_link + gitignore_type +
                                 '.gitignore', stream=True)
         if not response.ok:
@@ -131,7 +131,7 @@ def instigitr():
     from the user, handling it accordingly, initializing the git repo, popu-
     lating the .gitignore, and writing the README.
     """
-    choice = get_choice(['Yes', 'No'], 'Do you want to make' +
+    choice = get_choice(['Yes', 'No'], 'Do you want to make ' +
                         str(get_current_dir()) + ' a git repo?')
     handle_choice(choice)
 
@@ -142,13 +142,11 @@ def instigitr():
     while keep_going:
         gitignore_types.append(get_choice(all_gitignores,
                                'What type of repo are you making?'))
-        another_choice = get_choice(['Yes', 'No'], 'Do you have more gitignore
-                                    types?')
-        if not another_choice:
+        choice = get_choice(['Yes', 'No'], 'Do you have more types?')
+        if choice == 'No':
             keep_going = False
 
     gitignore(gitignore_types)
-
     write_readme()
     cleanup()
 

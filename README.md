@@ -7,54 +7,47 @@ instigitr is a command-line tool for creating git repos and initializing their
 README. It also creates a `.gitignore`, which is pulled from a sanitized
 list of gitignores provided by GitHub.
 
-
 ## Installation
 
 1. Clone this repository to your local machine:
 
     ```
-    $ git clone git@github.com:egg-shell/instigitr.git
+    git clone git@github.com:egg-shell/instigitr.git
     ```
 
 1. Install the pip package from the repo's root directory:
 
     ```
-    $ pip install .
+    pip install .
     ```
-
 
 ## Usage
 
 Create a directory for your new repo, navigate to it and run `instigitr`:
 
-    $ mkdir my-new-repo
-    $ cd my-new-repo
-    $ instigitr
-
+    mkdir my-new-repo
+    cd my-new-repo
+    instigitr
 
 ## Support
 
-Please use the [issue tracker](https://github.com/egg-shell/instigitr/issues) for bug reports and feature requests.
-
+Please use the [issue tracker](https://github.com/egg-shell/instigitr/issues)
+for bug reports and feature requests.
 
 ## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/egg-shell/instigitr/compare/).
-
-
-## History
-
-* **2016-10-03:** initial commit of basic functionality in bash
-* **2016-10-04:** conversion of basic functionality to Python
-* **2016-10-06:** added ability to install via pip
-* **2016-10-15:** give users a menu for their choices, eliminating CL args
-
+Please contribute using
+[Github Flow](https://guides.github.com/introduction/flow/).
+Create a branch, add commits,
+and [open a pull request](https://github.com/egg-shell/instigitr/compare/).
 
 ## License
 
-This project is licensed under the GNU GPL License - see the [LICENSE.md](LICENSE.md) file for details
-
+This project is licensed under the GNU GPL License - see the
+[LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgements
 
-* Thanks to [wong2/pick](https://github.com/wong2/pick) for the easy-to-use user choice API.
+* Thanks to [wong2/pick](https://github.com/wong2/pick) for the easy-to-use
+  user choice API.
+

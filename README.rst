@@ -2,8 +2,8 @@
 instigitr
 =========
 
-.. image:: https://travis-ci.org/egg-shell/instigitr.svg?branch=master
-    :target: https://travis-ci.org/egg-shell/instigitr
+.. image:: https://travis-ci.org/eggshell/instigitr.svg?branch=master
+    :target: https://travis-ci.org/eggshell/instigitr
 .. image:: http://img.shields.io/:license-gpl3-blue.svg
     :target: http://www.gnu.org/licenses/gpl-3.0.html
 

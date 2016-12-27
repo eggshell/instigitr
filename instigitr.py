@@ -142,9 +142,10 @@ def instigitr():
     while keep_going:
         gitignore_types.append(get_choice(all_gitignores,
                                'What type of repo are you making?'))
-        choice = get_choice(['Yes', 'No'], 'Do you have more types?')
-        if choice == 'No':
-            keep_going = False
+        if 'None' not in gitignore_types:
+            choice = get_choice(['Yes', 'No'], 'Do you have more types?')
+            if choice == 'No':
+                keep_going = False
 
     gitignore(gitignore_types)
     write_readme()

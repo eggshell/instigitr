@@ -16,7 +16,7 @@ Installation
 
 1. Clone this repository to your local machine::
 
-    $ git clone git@github.com:egg-shell/instigitr.git
+    $ git clone git@github.com:eggshell/instigitr.git
 
 2. Install the pip package from the repo's root directory::
 
@@ -34,7 +34,7 @@ Create a directory for your new repo, navigate to it and run ``instigitr``::
 Support
 =======
 
-Please use the `Issue Tracker <https://github.com/egg-shell/instigitr/issues>`_
+Please use the `Issue Tracker <https://github.com/eggshell/instigitr/issues>`_
 for bug reports and feature requests.
 
 Contributing
@@ -42,7 +42,7 @@ Contributing
 
 Please contribute using `GitHub Flow <https://guides.github.com/introduction/flow/>`_.
 Create a branch, add commits,
-and `open a pull request <https://github.com/egg-shell/instigitr/compare/>`_.
+and `open a pull request <https://github.com/eggshell/instigitr/compare/>`_.
 
 License
 =======
